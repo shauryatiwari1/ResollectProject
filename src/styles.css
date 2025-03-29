@@ -4,15 +4,18 @@ body {
     padding: 0;
     background-color: #f8f9fa;
     color: #212529;
-    overflow: hidden; 
+    overflow-x: hidden;
+    height: 100vh;
+    width: 100vw;
 }
+
 
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
-    width: 99%;
-    height: 50px; 
+    width: 100%;
+    height: 50px;
     background: #bfcefa;
     color: rgb(120, 175, 243);
     display: flex;
@@ -21,12 +24,15 @@ body {
     padding: 0 20px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     z-index: 1000;
+    box-sizing: border-box;
 }
 
 .navbar-title {
     font-size: 20px;
     font-weight: bold;
     margin: 0;
+    display: flex;
+    align-items: center;
 }
 
 .profile-container {
@@ -49,14 +55,15 @@ body {
 
 .dropdown-menu {
     position: absolute;
-    top: 40px; 
+    top: 100%;
     right: 0;
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 150px;
-    z-index: 100;
+    z-index: 1010;
+    margin-top: 5px;
 }
 
 .dropdown-menu button {
@@ -64,32 +71,65 @@ body {
     padding: 10px;
     background-color: #bfcefa;
     border: none;
-    border-radius: 5px;
     text-align: left;
     color: #333;
     cursor: pointer;
     font-size: 14px;
 }
 
+.dropdown-menu button:first-child {
+    border-radius: 5px 5px 0 0;
+}
+
+.dropdown-menu button:last-child {
+    border-radius: 0 0 5px 5px;
+}
+
 .dropdown-menu button:hover {
     background-color: #a6b6e8;
 }
 
+
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #212529;
+}
+
+
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+
 .sidebar {
-    width: 190px; 
+    width: 190px;
     height: calc(100vh - 50px);
     background: #f8f9fc;
     color: #4e73df;
     position: fixed;
     left: 0;
-    top: 50px; 
+    top: 50px;
     padding: 15px;
     border-right: 1px solid #d1d3e2;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
     overflow-y: auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; 
+    justify-content: space-between;
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
+    z-index: 999;
 }
 
 .sidebar-title {
@@ -103,6 +143,7 @@ body {
 .sidebar-menu {
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .sidebar-menu li {
@@ -113,6 +154,7 @@ body {
     color: #5a5c69;
     border-radius: 5px;
     transition: background 0.3s, color 0.3s;
+    margin-bottom: 2px;
 }
 
 .sidebar-menu li:hover {
@@ -124,6 +166,7 @@ body {
     background: #4e73df;
     color: white;
 }
+
 .powered-by {
     text-align: center;
     font-size: 12px;
@@ -131,20 +174,36 @@ body {
     margin-top: 20px;
 }
 
+
+.close-btn {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #4e73df;
+}
+
+
 .header {
-    
     position: fixed;
-    top: 50px; 
-    left: 221px; 
-    width: calc(100% - 220px);
-    height: 125px; 
+    top: 50px;
+    left: 190px;
+    width: calc(100% - 190px);
+    min-height: 100px;
+    max-height: 157px;
     background: white;
     padding: 12px 15px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    z-index: 999;
+    z-index: 998;
+    box-sizing: border-box;
+    transition: left 0.3s ease, width 0.3s ease;
 }
 
 .titled h2 {
@@ -155,11 +214,11 @@ body {
 }
 
 .filters {
-    
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 6px;
     margin-top: 10px;
+    width: 100%;
 }
 
 .filter-btn {
@@ -179,11 +238,16 @@ body {
     background: #4e73df;
     color: white;
 }
+
 .justcornering {
-    display: flex-end;
+    display: flex;
+    gap: 8px;
+    width: 100%;
+    justify-content: flex-end;
+    margin: 5px 0;
 }
+
 .more-filters {
-    
     background: #4e73df;
     color: white;
     padding: 6px 10px;
@@ -198,33 +262,40 @@ body {
     background: #2e59d9;
 }
 
+
 .main-content {
     position: fixed;
-    top: 175px; 
-    left: 210px;
+    top: 175px;
+    left: 190px;
     width: calc(100% - 190px);
-    height: calc(100vh - 150px); 
+    height: calc(100vh - 175px);
     overflow: hidden;
     padding: 15px;
+    box-sizing: border-box;
+    transition: left 0.3s ease, width 0.3s ease;
 }
 
+
 .table-container {
-    margin-right: 45px;
+    margin-top: 15px;
+    margin-right: 0px;
     background: white;
-    padding: 5px;
+    padding: 2px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    overflow : auto; 
+    overflow: auto; 
     height: 100%;
-    max-height: 463px;
+    max-height: 458px;
 }
+
 .tablessed {
     margin-right: 2px;
+    margin-top: 10px;
     background: white;
     padding: 5px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    overflow : auto; 
+    overflow: auto; 
     height: 100%;
     max-height: 470px;
 }
@@ -313,27 +384,12 @@ body {
 
 .tabless {
     overflow-x: auto;
-    
     white-space: nowrap;
     width: 100%;
 }
 
-@media (max-width: 768px) {
-    .sidebar {
-        width: 180px;
-    }
-    .header {
-        left: 180px;
-        width: calc(100% - 180px);
-    }
-    .main-content {
-        left: 180px;
-        width: calc(100% - 180px);
-    }
-}
-
 .navbar-logo {
-    height: 58px; 
+    height: 50px; 
     width: 120px; 
     margin-left: 10px; 
 }
@@ -344,10 +400,11 @@ body {
     color: #199ddf;
     margin-top: 20px;
 }
+
 .justcornering {
     display: flex;
     gap: 10px;
-    width: 84vw;
+    width: 86vw;
     justify-content: end;
 }
 
@@ -364,46 +421,37 @@ body {
     justify-content: flex-start;
     padding: 20px;
     transition: transform 0.3s ease-in-out;
-  }
+}
   
-  .upload-doc-header {
+.upload-doc-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid #007bff;
     padding-bottom: 10px;
     margin-bottom: 20px;
-  }
+}
   
-  .upload-doc-header h3 {
+.upload-doc-header h3 {
     color: #007bff;
     font-size: 20px;
     font-weight: bold;
     margin: 0;
-  }
+}
   
-  .close-btn {
-    background: none;
-    border: none;
-    font-size: 22px;
-    color: black;
-    cursor: pointer;
-  }
-  
-  .upload-doc-content {
+.upload-doc-content {
     display: flex;
     flex-direction: column;
-    
     gap: 15px;
-  }
+}
   
-  .upload-doc-content label {
+.upload-doc-content label {
     font-size: 14px;
     font-weight: bold;
     color: #007bff;
-  }
+}
   
-  .upload-input {
+.upload-input {
     width: 100%;
     padding: 10px;
     border: 2px solid #007bff;
@@ -411,13 +459,13 @@ body {
     background: white;
     font-size: 14px;
     color: black;
-  }
+}
   
-  .file-input {
+.file-input {
     padding: 8px;
-  }
+}
   
-  .submit-btn {
+.submit-btn {
     width: 100%;
     padding: 12px;
     background: #007bff;
@@ -428,15 +476,164 @@ body {
     border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
-  }
+}
   
-  .submit-btn:hover {
+.submit-btn:hover {
     background: #0056b3;
-  }
-  .addingnew {
+}
+
+.addingnew {
     display: flex;
-    width: 97%;
+    width: 100%;
     justify-content: end;
     align-content: center;
-  }
-  
+}
+
+.searchbardiv {
+    width: 40%;
+}
+
+
+@media (max-width: 1024px) {
+    .upload-doc-overlay {
+        width: 40%;
+    }
+}
+
+@media (max-width: 768px) {
+    
+    .menu-toggle {
+        display: block;
+        margin-right: 10px;
+    }
+    
+    
+    .sidebar {
+        transform: translateX(-100%);
+        width: 240px;
+        position: fixed;
+        top: 0; 
+        height: 100vh;
+        padding-top: 50px; 
+        z-index: 1000;
+    }
+    
+    
+    .sidebar.active {
+        transform: translateX(0);
+    }
+    
+    
+    .close-btn {
+        display: block;
+    }
+    
+    
+    .sidebar-overlay.active {
+        display: block;
+    }
+    
+    
+    .header {
+        left: 0;
+        width: 100%;
+    }
+    
+    .main-content {
+        left: 0;
+        width: 100%;
+        top: 165px;
+        height: calc(100vh - 165px);
+    }
+    
+    .upload-doc-overlay {
+        width: 70%;
+    }
+    
+    .filter-btn {
+        font-size: 12px;
+        padding: 5px 8px;
+    }
+    
+    .navbar-title {
+        margin-left: 20px; 
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar {
+        padding: 0 10px;
+    }
+    
+    .navbar-title {
+        font-size: 16px;
+    }
+    
+    .navbar-logo {
+        height: 30px;
+        width: auto;
+    }
+    
+    .profile-btn {
+        font-size: 14px;
+    }
+    
+    .profile-btn svg {
+        margin-right: 4px;
+    }
+    
+    .header {
+        height: auto;
+        min-height: 115px;
+        padding: 10px;
+    }
+    
+    .titled h2 {
+        font-size: 18px;
+    }
+    
+    .main-content {
+        top: 140px;
+        height: calc(100vh - 140px);
+        padding: 10px;
+    }
+    
+    .filters {
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+    
+    .filter-btn {
+        font-size: 11px;
+        padding: 4px 6px;
+        margin-bottom: 2px;
+    }
+    
+    .upload-doc-overlay {
+        width: 90%;
+    }
+    
+    .table-container, .tablessed {
+        padding: 8px;
+    }
+    
+    .data-table th, .data-table td {
+        padding: 8px 5px;
+        font-size: 12px;
+    }
+    
+    .dropdown-menu {
+        width: 130px;
+        right: -5px;
+    }
+    
+    .justcornering {
+        flex-wrap: wrap;
+    }
+    
+    
+    .dropdown-menu button {
+        padding: 8px;
+        font-size: 12px;
+    }
+}

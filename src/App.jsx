@@ -4,7 +4,8 @@ import Sidebar from "./components/sidebar";
 import Header from "./components/header";
 import Table from "./components/table";
 import UploadDoc from "./components/uploaddoc";
-import AddDataForm from "./components/adddataform"; 
+import AddDataForm from "./components/adddataform";
+
 import "./index.css";
 
 export default function App() {
@@ -12,17 +13,18 @@ export default function App() {
   const [selectedPage, setSelectedPage] = useState("Portfolio");
   const [selectedFilter, setSelectedFilter] = useState("All");
   const [isUploadOpen, setIsUploadOpen] = useState(false);
-  const [isAddFormOpen, setIsAddFormOpen] = useState(false); 
-  const [data, setData] = useState([]); 
-
+  const [isAddFormOpen, setIsAddFormOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  
+  const [data, setData] = useState([]);
+  
   useEffect(() => {
-    fetch("https://resollect-project-jlfb.onrender.com/loans") 
+    fetch("https://resollect-project-jlfb.onrender.com/loans")
       .then((res) => res.json())
       .then((fetchedData) => setData(fetchedData))
       .catch((err) => console.error("Error fetching data:", err));
   }, []);
-
-  
+    
   const addData = async (newLoan) => {
     try {
       const response = await fetch("https://resollect-project-jlfb.onrender.com/loans", {
@@ -32,26 +34,42 @@ export default function App() {
         },
         body: JSON.stringify(newLoan),
       });
-
+      
       if (!response.ok) {
         throw new Error("Failed to add data");
       }
-
+      
       const addedLoan = await response.json();
-      setData([...data, addedLoan]); 
-      setIsAddFormOpen(false); 
+      setData([...data, addedLoan]);
+      
+      setIsAddFormOpen(false);
     } catch (error) {
       console.error("Error adding data:", error);
     }
   };
 
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
-    <div className="app-container">
-      <Navbar />
-
+    <div className={`app-container ${isSidebarOpen ? 'sidebar-active' : ''}`}>
+      <Navbar toggleSidebar={toggleSidebar} />
+      
+      
+      <div 
+        className={`sidebar-overlay ${isSidebarOpen ? 'active' : ''}`} 
+        onClick={() => setIsSidebarOpen(false)}
+      ></div>
+      
       <div className="container">
-        <Sidebar selectedPage={selectedPage} setSelectedPage={setSelectedPage} />
-
+        <Sidebar 
+          selectedPage={selectedPage} 
+          setSelectedPage={setSelectedPage} 
+          isSidebarOpen={isSidebarOpen}
+          toggleSidebar={toggleSidebar}
+        />
+        
         <div className="main-content">
           {selectedPage === "Portfolio" ? (
             <>
@@ -62,7 +80,7 @@ export default function App() {
                 setSelectedFilter={setSelectedFilter}
                 setIsUploadOpen={setIsUploadOpen}
               />
-
+              
               <div className="tabless">
                 {selectedFilter === "Pre Sarfaesi" ? (
                   <div className="tablessed">
@@ -87,7 +105,7 @@ export default function App() {
           )}
         </div>
       </div>
-
+      
       {isUploadOpen && <UploadDoc setIsUploadOpen={setIsUploadOpen} />}
       {isAddFormOpen && <AddDataForm onClose={() => setIsAddFormOpen(false)} onSubmit={addData} />}
     </div>

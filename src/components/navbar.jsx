@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import "./navbar.css";
 
-export default function Navbar() {
+export default function Navbar({ toggleSidebar }) {
   const [isDropdownOpen, setDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -15,6 +15,11 @@ export default function Navbar() {
 
   return (
     <nav className="navbar">
+      
+      <button className="menu-toggle" onClick={toggleSidebar}>
+        ☰
+      </button>
+      
       <h2 className="navbar-title">
         <img src="/resollect_logo.jpeg" alt="Logo" className="navbar-logo" />
       </h2>
