@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./AddDataForm.css"; 
+import "./adddataform.css"; 
 
 export default function AddDataForm({ onClose, onSubmit }) {
   const [formData, setFormData] = useState({
