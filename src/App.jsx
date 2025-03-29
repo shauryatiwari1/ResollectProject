@@ -16,7 +16,7 @@ export default function App() {
   const [data, setData] = useState([]); 
 
   useEffect(() => {
-    fetch("http://localhost:5000/loans") 
+    fetch("https://resollect-project-jlfb.onrender.com/loans") 
       .then((res) => res.json())
       .then((fetchedData) => setData(fetchedData))
       .catch((err) => console.error("Error fetching data:", err));
@@ -25,7 +25,7 @@ export default function App() {
   
   const addData = async (newLoan) => {
     try {
-      const response = await fetch("http://localhost:5000/loans", {
+      const response = await fetch("https://resollect-project-jlfb.onrender.com/loans", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
