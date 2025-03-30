@@ -318,6 +318,10 @@ body {
 .table-container::-webkit-scrollbar-thumb:hover {
     background: #4d4e52; 
 }
+.tablessed::-webkit-scrollbar {
+    width: 4px;  
+    height: 4px; 
+}
 
 .search-bar {
     width: 97%;
@@ -602,7 +606,9 @@ body {
         flex-wrap: wrap;
         gap: 4px;
     }
-    
+    .tabless {
+        margin-top: 60px;
+    }
     .filter-btn {
         font-size: 11px;
         padding: 4px 6px;
