@@ -6,7 +6,7 @@ import Table from "./components/table";
 import UploadDoc from "./components/uploaddoc";
 import AddDataForm from "./components/adddataform";
 
-import "./index.css";
+import "./styles.css";
 
 export default function App() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -15,6 +15,7 @@ export default function App() {
   const [isUploadOpen, setIsUploadOpen] = useState(false);
   const [isAddFormOpen, setIsAddFormOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isModeDarkened, setIsModeDarkened] = useState(false);
   
   const [data, setData] = useState([]);
   
@@ -24,6 +25,10 @@ export default function App() {
       .then((fetchedData) => setData(fetchedData))
       .catch((err) => console.error("Error fetching data:", err));
   }, []);
+
+  const toggleMode = () => {
+    setIsModeDarkened(!isModeDarkened);
+  };
     
   const addData = async (newLoan) => {
     try {
@@ -53,9 +58,9 @@ export default function App() {
   };
 
   return (
-    <div className={`app-container ${isSidebarOpen ? 'sidebar-active' : ''}`}>
-      <Navbar toggleSidebar={toggleSidebar} />
+    <div className={`app-container ${isSidebarOpen ? 'sidebar-active' : ''} ${isModeDarkened ? 'dark-mode' : ''}`}>
       
+      <Navbar toggleSidebar={toggleSidebar} />
       
       <div 
         className={`sidebar-overlay ${isSidebarOpen ? 'active' : ''}`} 
@@ -79,6 +84,8 @@ export default function App() {
                 selectedFilter={selectedFilter}
                 setSelectedFilter={setSelectedFilter}
                 setIsUploadOpen={setIsUploadOpen}
+                isModeDarkened={isModeDarkened}
+                toggleMode={toggleMode}
               />
               
               <div className="tabless">
@@ -87,6 +94,7 @@ export default function App() {
                     <div className="filters">
                       <button className="filter-btn">Generate Pre Sarfaesi Notice</button>
                       <button className="filter-btn">Declare NPA</button>
+                      
                     </div>
                     <Table searchQuery={searchQuery} data={data} />
                   </div>

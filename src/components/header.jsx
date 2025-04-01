@@ -1,4 +1,7 @@
-export default function Header({ searchQuery, setSearchQuery, selectedFilter, setSelectedFilter, setIsUploadOpen }) {
+// below import is for theme change icons
+import { FiSun, FiMoon } from "react-icons/fi";
+
+export default function Header({isModeDarkened,toggleMode, searchQuery, setSearchQuery, selectedFilter, setSelectedFilter, setIsUploadOpen }) {
     return (
       <header className="header">
         <div className="titled">
@@ -18,6 +21,7 @@ export default function Header({ searchQuery, setSearchQuery, selectedFilter, se
         <div className="justcornering">
             <button className="more-filters">More Filters</button>
             <button className="more-filters" onClick={() => setIsUploadOpen(true)}>Upload Document</button>
+            <button className="themebutton" onClick={toggleMode}>Theme {isModeDarkened? <FiSun size={15} /> : <FiMoon size={15} />}</button>
         </div>
 
         <input
