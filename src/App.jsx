@@ -58,6 +58,7 @@ export default function App() {
   };
 
   return (
+    // below line defines look of UI in different themes and mobile responsiveness
     <div className={`app-container ${isSidebarOpen ? 'sidebar-active' : ''} ${isModeDarkened ? 'dark-mode' : ''}`}>
       
       <Navbar toggleSidebar={toggleSidebar} />
