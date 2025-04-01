@@ -334,6 +334,7 @@ body {
     width: 100%;
     justify-content: flex-end;
     margin: 5px 0;
+    flex-wrap: wrap;
 }
 
 .more-filters {
@@ -715,11 +716,14 @@ body {
     background-color: #023765;
     color: #ffffff;
     border: none;
-    padding: 10px 16px;
-    font-size: 16px;
-    border-radius: 5px;
+    padding: 6px 10px;
+    font-size: 14px;
+    border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .dark-mode .themebutton {
@@ -879,5 +883,17 @@ body {
     .dropdown-menu button {
         padding: 8px;
         font-size: 12px;
+    }
+    .justcornering {
+        gap: 4px; 
+    }
+    .more-filters, .themebutton {
+        font-size: 12px;
+        padding: 5px 8px;
+        flex: 0 0 auto; 
+    }
+    .themebutton svg {
+        width: 14px;
+        height: 14px;
     }
 }
