@@ -184,7 +184,6 @@ const sampleLoans = [
 
 // inserting new data manually here using this function for checking how ui responds initially
 const seedDB = async () => {
-    await Loan.deleteMany({}); 
     await Loan.insertMany(sampleLoans);
     console.log("Sample Data Inserted!");
     mongoose.connection.close();
