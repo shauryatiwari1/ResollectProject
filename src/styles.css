@@ -862,6 +862,7 @@ body {
     }
     
     .table-container, .tablessed {
+        max-height: calc(100vh - 280px);
         padding: 8px;
     }
     
