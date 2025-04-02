@@ -11,7 +11,7 @@ In Frontend part is a Portfolio Loan management UI that can be used by anyone fo
 Tech Stack :
 (A) Frontend: React components + Vite build for Fast updates and project management
 
-(B) Backend: Express.js with Node.js and MongoDB (no SQL) CLoud database
+(B) Backend: Express.js with Node.js and MongoDB Atlas (noSQL) Cloud database
 
 Project Structure(Monorepo):
 
@@ -54,17 +54,18 @@ This is how u can Run/Test Locally:
 
 1) Clone the repository
    
-3) Install dependencies [npm install (npm will install listed dependencies in the package.json)]
+2) Install dependencies [npm install (npm will install listed dependencies in the package.json)]
    
-5) npm install to be done in backend directory seperately other than the root directory which has frontend
+3) npm install to be done in backend directory seperately other than the root directory which has frontend
    
-7) Running frontend with "npm run dev" in root directory
+4) Running frontend with "npm run dev" in root directory
    
-9) and Running backend with "npm start" in backend directory
+5) and Running backend with "npm start" in backend directory
     
-Dont Forget to add the scripts in package.json to specify what command to run(frontend and backend can be run with same command this way for ur ease)
+NOTE: Dont Forget to have the scripts in package.json to specify what command to run with that script (frontend and backend can be run with one command this way for ur ease)
+Also, make your ENV file and add your MongoDB Connection String 
 
-These are the scripts:
+These are the scripts(Backend):
 
     "scripts": {
         "start": "node server.js",
@@ -72,7 +73,7 @@ These are the scripts:
         "test": "set NODE_ENV=test&& jest --forceExit --detectOpenHandles"
      }
 
-These are the dependencies:
+These are the dependencies(Backend):
 
       "dependencies": {
         "cors": "^2.8.5",
@@ -90,7 +91,7 @@ Run tests with "npm test"
 
 For Deployment, I have used
 
-(i)Netlify for frontend (Live Link: https://resollectproject.netlify.app)
+(i) Netlify for frontend (Live Link: https://resollectproject.netlify.app)
 
 (ii) Render for Backend API endpoint which is then used in the frontend.
 
