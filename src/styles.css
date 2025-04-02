@@ -251,6 +251,17 @@ body {
     cursor: pointer;
     color: #4e73df;
 }
+.updoc-close-btn {
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #060914;
+}
 
 .dark-mode .close-btn {
     color: #7b9fff;

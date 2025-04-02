@@ -1,4 +1,5 @@
 import React from "react";
+import { FaTimes } from "react-icons/fa";
 
 export default function Sidebar({ selectedPage, setSelectedPage, isSidebarOpen, toggleSidebar }) {
   const menuItems = [
@@ -16,7 +17,7 @@ export default function Sidebar({ selectedPage, setSelectedPage, isSidebarOpen, 
   return (
     <aside className={`sidebar ${isSidebarOpen ? 'active' : ''}`}>
       
-      <button className="close-btn" onClick={toggleSidebar}>×</button>
+      <button className="close-btn" onClick={toggleSidebar}><FaTimes size={19}/></button>
       
       <ul className="sidebar-menu">
         {menuItems.map((item, index) => (

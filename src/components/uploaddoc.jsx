@@ -1,4 +1,5 @@
 import React from "react";
+import { FaTimes } from "react-icons/fa";
 
 export default function UploadDoc({ setIsUploadOpen }) {
   const handleOverlayClick = (e) => {
@@ -12,7 +13,7 @@ export default function UploadDoc({ setIsUploadOpen }) {
       <div className="upload-doc-panel" onClick={(e) => e.stopPropagation()}>
         <div className="upload-doc-header">
           <h3>Upload Document</h3>
-          <button className="close-btn" onClick={() => setIsUploadOpen(false)}>✖</button>
+          <button className="updoc-close-btn" onClick={() => setIsUploadOpen(false)}><FaTimes size={19}/></button>
         </div>
 
         <div className="upload-doc-content">
