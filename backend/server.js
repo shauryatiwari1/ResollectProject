@@ -12,7 +12,8 @@ app.use(cors());
 
 const PORT = process.env.PORT || 5000;
 
-// selecting wheteher to connect to main db or unit testing db
+// selecting wheteher to connect to main db or unit testing db 
+// remember to put your own mongo uri in env if running locally
 const MONGO_URI = process.env.NODE_ENV === "test" ? process.env.TEST_MONGO_URI : process.env.MONGO_URI;
 
 
