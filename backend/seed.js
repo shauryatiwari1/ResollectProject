@@ -3,8 +3,8 @@ require("dotenv").config();
 const Loan = require("./models/loan");
 
 mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log("✅ MongoDB Connected for Seeding"))
-    .catch(err => console.error("❌ MongoDB Connection Error:", err));
+    .then(() => console.log("MongoDB Connected for Seeding"))
+    .catch(err => console.error("MongoDB Connection Error:", err));
 
 const sampleLoans = [
     
@@ -182,13 +182,13 @@ const sampleLoans = [
     
 ];
 
-// inserting new data manually here just for checking how ui responds
+// inserting new data manually here using this function for checking how ui responds initially
 const seedDB = async () => {
     await Loan.deleteMany({}); 
     await Loan.insertMany(sampleLoans);
-    console.log("🌱 Sample Data Inserted!");
+    console.log("Sample Data Inserted!");
     mongoose.connection.close();
 };
 
-// Run seeding function
+// seeding function will run when this file is run
 seedDB();

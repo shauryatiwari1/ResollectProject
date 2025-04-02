@@ -17,8 +17,8 @@ const MONGO_URI = process.env.NODE_ENV === "test" ? process.env.TEST_MONGO_URI :
 
 
 mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log(`✅ Connected to ${process.env.NODE_ENV === "test" ? "Test Database" : "Main Database"}`))
-    .catch(err => console.error("❌ MongoDB Connection Error:", err));
+    .then(() => console.log(`Connected to ${process.env.NODE_ENV === "test" ? "Test Database" : "Main Database"}`))
+    .catch(err => console.error("MongoDB Connection Error:", err));
 
 
 app.get("/", (req, res) => {
@@ -34,13 +34,13 @@ app.post("/loans", async (req, res) => {
         const savedLoan = await newLoan.save();
         res.status(201).json(savedLoan);
     } catch (error) {
-        res.status(500).json({ error: "❌ Failed to save loan data" });
+        res.status(500).json({ error: "Failed to save loan data" });
     }
 });
 
 
 if (process.env.NODE_ENV !== "test") {
-    app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 }
 
 module.exports = app;
