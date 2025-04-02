@@ -587,7 +587,7 @@ body {
 .justcornering {
     display: flex;
     gap: 10px;
-    width: 86vw;
+    width: calc(100% - 14px);
     justify-content: end;
 }
 
